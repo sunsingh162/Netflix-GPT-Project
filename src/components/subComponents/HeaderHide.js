@@ -4,7 +4,7 @@ import { auth } from "../../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { LANGUAGE_CODE } from "../../utils/constants/constants";
 import { toggleGptSarch } from "../../utils/slices/gptSlice";
-import { changeConfig, setConfirm } from "../../utils/slices/configSlice";
+import { changeConfig } from "../../utils/slices/configSlice";
 import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 const HeaderHide = ({ setHeaderHide, imgRef }) => {
@@ -52,16 +52,6 @@ const HeaderHide = ({ setHeaderHide, imgRef }) => {
 			document.removeEventListener("mousedown", handler);
 		};
 	}, []);
-	const handleDeleteAc = () => {
-		dispatch(setConfirm(true));
-		setHeaderHide(true);
-		const scrollY =
-			document.documentElement.style.getPropertyValue("--scroll-y");
-		const body = document.body;
-		body.style.position = "fixed";
-		body.style.width = "100vw";
-		body.style.top = `-${scrollY}`;
-	};
 
 	return (
 		<>
@@ -81,32 +71,13 @@ const HeaderHide = ({ setHeaderHide, imgRef }) => {
 					}
 					onClick={handleGptSearchPage}
 				>
-					{gptSearch ? "Home Page" : "Gpt Search"}
+					{gptSearch ? "Home" : "Gpt Search"}
 				</button>
-				{gptSearch && (
-					<select
-						className="w-28 text-black bg-gray-400/80 border rounded-md hover:border-gray-400 border-white py-2 text-center cursor-pointer outline-none"
-						onChange={handleConfigLang}
-						value={configLang}
-					>
-						{LANGUAGE_CODE.map((lang) => (
-							<option key={lang.name} value={lang.code}>
-								{lang.name}
-							</option>
-						))}
-					</select>
-				)}
 				<button
 					className="w-28 h-10 font-normal border hover:border-gray-400 border-white rounded-md bg-gray-400 text-black  hover:bg-red-600 hover:text-white active:bg-red-950"
 					onClick={handleSignOut}
 				>
 					Logout
-				</button>
-				<button
-					className="w-28 h-10 font-normal border hover:border-gray-400 border-white rounded-md bg-gray-400 text-black  hover:bg-red-600 hover:text-white active:bg-red-950"
-					onClick={handleDeleteAc}
-				>
-					Delete Ac.
 				</button>
 			</div>
 		</>

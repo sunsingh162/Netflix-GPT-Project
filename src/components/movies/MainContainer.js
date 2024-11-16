@@ -15,7 +15,7 @@ const MainContainer = () => {
 					<div class="loading-bar"></div>
 				</div>
 				<h2 className="text-center">
-					Use VPN otherwise movies won't show up...😊
+					Please wait for movies to show up...😊
 				</h2>
 			</div>
 		);

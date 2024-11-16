@@ -8,12 +8,10 @@ import SecondaryContainer from "../movies/SecondaryContainer";
 import { useSelector } from "react-redux";
 import GptContainer from "../gpt/GptContainer";
 import MovieInfo from "../movies/MovieInfo";
-import Confirm from "../subComponents/Confirm";
 
 const Browse = () => {
 	const gptSearchPage = useSelector((store) => store.gpt.gptSearchPage);
 	const { page } = useSelector((store) => store.movies?.movieInfo);
-	const confirm = useSelector((store) => store.config?.confirm);
 	useNowPlayingMovies();
 	usePopularMovies();
 	useTopRatedMovies();
@@ -32,11 +30,6 @@ const Browse = () => {
 			{page && (
 				<div className="fixed top-0 backdrop-blur-sm p-2 w-full h-full flex items-center justify-center z-50">
 					<MovieInfo />
-				</div>
-			)}
-			{confirm && (
-				<div className="fixed top-0 backdrop-blur-sm p-2 w-full h-full flex items-center justify-center z-50">
-					<Confirm />
 				</div>
 			)}
 		</div>

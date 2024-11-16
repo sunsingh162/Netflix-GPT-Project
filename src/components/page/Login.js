@@ -14,7 +14,6 @@ import {
 import { auth } from "../../utils/firebase.js";
 import { addUser } from "../../utils/slices/userSlice.js";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "../Footer.js";
 import { APP_BG, AVATAR_LOGO } from "../../utils/constants/constants.js";
 import lang from "../../utils/constants/langConstants.js";
 import { toast } from "react-toastify";
@@ -231,7 +230,6 @@ const Login = () => {
 					</p>
 				</form>
 			</div>
-			<Footer />
 			{forgotPass && (
 				<div className="fixed top-0 backdrop-blur-sm p-2 w-full h-full flex items-center justify-center z-50">
 					<ForgotPass />

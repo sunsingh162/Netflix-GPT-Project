@@ -37,13 +37,5 @@ export const LANGUAGE_CODE = [
 	{
 		code: "te",
 		name: "Telugu",
-	},
-	{
-		code: "gu",
-		name: "Gujarati",
-	},
-	{
-		code: "bn",
-		name: "Bangla",
-	},
+	}
 ];

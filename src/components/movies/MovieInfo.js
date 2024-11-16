@@ -96,7 +96,7 @@ const MovieInfo = () => {
           <div className="absolute top-0 flex items-center justify-center invisible w-full h-full overflow-hidden bg-black sm:visible sm:opacity-0 sm:hover:opacity-60">
             <i
               onClick={handleMovieInfoPageVideo}
-              className="text-3xl cursor-pointer opacity-90 sm:text-4xl fa-solid fa-circle-xmark fa-shake"
+              className="text-3xl cursor-pointer opacity-90 sm:text-4xl"
             ></i>
           </div>
         </>

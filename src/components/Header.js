@@ -4,9 +4,10 @@ import { auth } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/slices/userSlice";
-import { APP_LOGO } from "../utils/constants/constants";
+import { APP_LOGO, LANGUAGE_CODE } from "../utils/constants/constants";
 import { toggleHomePage } from "../utils/slices/gptSlice";
 import HeaderHide from "./subComponents/HeaderHide";
+import { changeConfig } from "../utils/slices/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,6 +15,10 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   const [headerhide, setHeaderHide] = useState(true);
   const imgRef = useRef();
+  const configLang = useSelector((store) => store.config.lang);
+	const handleConfigLang = (e) => {
+		dispatch(changeConfig(e.target.value));
+	};
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,6 +47,7 @@ const Header = () => {
 
   return (
     <div className="fixed top-0 z-50 h-20 px-3 sm:px-[10%] filter flex justify-between items-center w-full bg-gradient-to-b from-black from-40% to-transparent">
+      <div className="flex w-full justify-between">
       <Link to="/">
         <img
           onClick={handleGptHomePage}
@@ -50,6 +56,21 @@ const Header = () => {
           alt="logo"
         />
       </Link>
+      <div className="mt-5">
+      <select
+						name="language"
+						className="max-h-11 sm:mr-4 outline-none py-2 ps-2 bg-black font-semibold border border-gray-400 rounded-md cursor-pointer text-white"
+						onChange={handleConfigLang}
+						value={configLang}
+					>
+						{LANGUAGE_CODE.map((lang) => (
+							<option key={lang.name} value={lang.code}>
+								{lang.name}
+							</option>
+						))}
+					</select>
+          </div>
+          </div>
       {user?.photoURL && (
         <div
           className="relative flex justify-center place-items-center"
